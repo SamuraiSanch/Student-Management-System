@@ -13,7 +13,16 @@ private:
 public:
     void addStudent(Student& student);
     void showAllStudents();
-    void removeStudent(const Student& student);
+    void removeStudent(const int id);
+    Student* getStudent(const int id);
+    Student* getStudent(const std::string& name);
+    void showStudentsByFaculty(const std::string& faculty);
+
+    void addGrade(const int id, const std::string& subject, const int grade);
+    void showGrades(const int id);
+    void showGrades(const std::string& name);
+    double calculateAverage();
+    std::vector<Student> getTopStudents(const int n);
 };
 
 #endif

@@ -14,7 +14,7 @@ int main()
     sys.addStudent(s);
     sys.addStudent(d);
     sys.showAllStudents();
-    sys.removeStudent(s);
+    sys.removeStudent(s.id);
     sys.showAllStudents();
 }
 
