@@ -1,7 +1,20 @@
 ﻿#include <iostream>
-
+#include "StudentSystem.h"
 int main()
 {
-    std::cout << "Hello World!\n";
+    Student s;
+    s.age = 19;
+    s.faculty = "Math";
+    s.name = "Sanch";
+    Student d;
+    d.age = 18;
+    d.faculty = "Literature";
+    d.name = "Nine";
+    StudentSystem sys;
+    sys.addStudent(s);
+    sys.addStudent(d);
+    sys.showAllStudents();
+    sys.removeStudent(s);
+    sys.showAllStudents();
 }
 
