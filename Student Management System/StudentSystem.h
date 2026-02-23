@@ -19,9 +19,11 @@ public:
     void showStudentsByFaculty(const std::string& faculty);
 
     void addGrade(const int id, const std::string& subject, const int grade);
+    void addGrade(const std::string& name, const std::string& subject, const int grade);
     void showGrades(const int id);
     void showGrades(const std::string& name);
-    double calculateAverage();
+    double calculateAverage(const int id);
+    double calculateAverage(const std::string& name);
     std::vector<Student> getTopStudents(const int n);
 };
 

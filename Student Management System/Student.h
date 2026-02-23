@@ -12,7 +12,7 @@ struct Student {
     std::string faculty;
 
     // Предмети та оцінки: "Math" -> [85, 90, 92]
-    //std::map<std::string, std::vector<int>> grades;
+    std::map<std::string, std::vector<int>> grades;
 };
 inline std::ostream& operator<< (std::ostream& out, const Student& s) {
     out << '[' << s.id << "] " << s.name << '(' << s.age << "y) is studying on faculty: " << s.faculty;
