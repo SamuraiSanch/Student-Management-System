@@ -150,16 +150,25 @@ std::vector<std::pair<int, double>> StudentSystem::getTopStudents(const int n) {
 std::map<std::string, int> StudentSystem::getFacultyStatistics() {
     std::map<std::string, int> facultyStatistics;
 
+    if (m_students.empty())
+        throw std::runtime_error("GetFacultyStatistics: can't find any faculty.");
+    for (auto it = m_students.begin(); it != m_students.end(); ++it) {
+        facultyStatistics[it->second.faculty]++;
+    }
+
 
     return facultyStatistics;
 
 }
 std::map<std::string, int> StudentSystem::getPopularSubjects() {
     std::map<std::string, int> popularSubjects;
-
-
+    if (m_students.empty())
+        throw std::runtime_error("GetPopularSubjects: can't find any student.");
+    for (auto it = m_students.begin(); it != m_students.end(); ++it) {
+        for (auto itsubj = it->second.grades.begin(); itsubj != it->second.grades.end(); ++itsubj)
+        popularSubjects[itsubj->first]++;
+    }
     return popularSubjects;
-
 }
 std::vector<Student> StudentSystem::getExcellentStudents() {
     std::vector<Student> excellentStudents;
@@ -170,5 +179,5 @@ std::vector<Student> StudentSystem::getExcellentStudents() {
         }
         ++it;
     }
-    return excellentStudents.empty() ? throw std::runtime_error("GetExccellentStudents: can't find student.") : excellentStudents;
+    return excellentStudents;
 }

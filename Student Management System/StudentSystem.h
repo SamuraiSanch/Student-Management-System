@@ -7,8 +7,6 @@ class StudentSystem {
 private:
     int m_id = 1;
     std::map<int, Student> m_students;           // ID -> Student
-    std::set<std::string> m_allSubjects;         // Всі предмети
-    std::map<std::string, int> m_facultyCount;   // Факультет -> кількість
 
 public:
     void addStudent(Student& student);
