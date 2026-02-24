@@ -24,7 +24,10 @@ public:
     void showGrades(const std::string& name);
     double calculateAverage(const int id);
     double calculateAverage(const std::string& name);
-    std::vector<Student> getTopStudents(const int n);
+    std::vector<std::pair<int, double>> getTopStudents(const int n);
+    std::map<std::string, int> getFacultyStatistics();
+    std::map<std::string, int> getPopularSubjects();
+    std::vector<Student> getExcellentStudents();
 };
 
 #endif

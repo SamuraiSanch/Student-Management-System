@@ -1,6 +1,7 @@
 #include "StudentSystem.h"
 #include <iostream>
 #include <numeric>
+#include <algorithm>
 
 void StudentSystem::addStudent(Student& student) {
     student.id = m_id;
@@ -9,13 +10,16 @@ void StudentSystem::addStudent(Student& student) {
 }
 void StudentSystem::showAllStudents() {
         auto it = m_students.begin();
+        if (it == m_students.end())
+            throw std::runtime_error("ShowAllStudents can't find students.");
         while (it != m_students.end()) {
             std::cout << "ID: " << it->first << " contains student " << it->second << '\n';
             ++it;
         }
 }
 void StudentSystem::removeStudent(const int id) {
-    m_students.erase(id);
+    if (m_students.erase(id) == 0)
+        throw std::runtime_error("RemoveStudent can't find student.");
 }
 Student* StudentSystem::getStudent(const int id) {
     auto it = m_students.find(id);
@@ -128,6 +132,43 @@ double StudentSystem::calculateAverage(const std::string& name) {
         throw std::runtime_error("CalculateAverage (string) can't find student.");
     
 }
-std::vector<Student> StudentSystem::getTopStudents(const int n) {
+std::vector<std::pair<int, double>> StudentSystem::getTopStudents(const int n) {
+    std::vector<std::pair<int, double>> topStudents;
+    topStudents.reserve(m_students.size());
+    auto it = m_students.begin();
+    while (it != m_students.end()) {
+        topStudents.push_back(std::make_pair(it->first, calculateAverage(it->first)));
+        ++it;
+    }
+    std::sort(topStudents.begin(), topStudents.end(), [](const std::pair<int, double>& a, const std::pair<int, double>& b) {
+        return a.second > b.second;
+        });
+    topStudents.resize(n);
+    return topStudents;
 
+}
+std::map<std::string, int> StudentSystem::getFacultyStatistics() {
+    std::map<std::string, int> facultyStatistics;
+
+
+    return facultyStatistics;
+
+}
+std::map<std::string, int> StudentSystem::getPopularSubjects() {
+    std::map<std::string, int> popularSubjects;
+
+
+    return popularSubjects;
+
+}
+std::vector<Student> StudentSystem::getExcellentStudents() {
+    std::vector<Student> excellentStudents;
+    auto it = m_students.begin();
+    while (it != m_students.end()) {
+        if (calculateAverage(it->second.id) >= 90) {
+            excellentStudents.push_back(it->second);
+        }
+        ++it;
+    }
+    return excellentStudents.empty() ? throw std::runtime_error("GetExccellentStudents: can't find student.") : excellentStudents;
 }
