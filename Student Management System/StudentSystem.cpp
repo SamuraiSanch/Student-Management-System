@@ -2,7 +2,9 @@
 #include <iostream>
 #include <numeric>
 #include <algorithm>
-
+#include <fstream>
+#include <sstream>
+#include <stdexcept>
 void StudentSystem::addStudent(Student& student) {
     student.id = m_id;
     m_students[m_id] = student;
@@ -180,4 +182,97 @@ std::vector<Student> StudentSystem::getExcellentStudents() {
         ++it;
     }
     return excellentStudents;
+}
+void StudentSystem::saveToFile(const std::string& filename) {
+    std::ofstream file(filename);
+
+    if (!file.is_open()) 
+        throw std::runtime_error("Cannot open file for writing");
+
+    if (m_students.empty())
+        throw std::runtime_error("Students empty for writing");
+    file << "# Students\n";
+    for (auto it = m_students.begin(); it != m_students.end(); ++it) {
+        file << it->second.id << "," << it->second.name << "," << it->second.age << "," << it->second.faculty << "\n";
+    }
+
+    file << "\n# Grades\n";
+    for (auto it = m_students.begin(); it != m_students.end(); ++it) {
+        for (auto itgrade = it->second.grades.begin(); itgrade != it->second.grades.end(); ++itgrade) {
+            file << it->first << "," << itgrade->first;
+            for (const auto& gradevec : itgrade->second) {
+                file << "," << gradevec;
+            }
+            file << "\n";
+        }
+    }
+
+    file.close();
+}
+std::vector<std::string> split(const std::string& str, char delimiter) {
+    std::vector<std::string> tokens;
+    std::stringstream ss(str);
+    std::string token;
+
+    while (std::getline(ss, token, delimiter)) {
+        tokens.push_back(token);
+    }
+
+    return tokens;
+}
+void StudentSystem::loadFromFile(const std::string& filename) {
+    std::ifstream file(filename);
+
+    if (!file.is_open()) {
+        throw std::runtime_error("Cannot open file: " + filename);
+    }
+
+    m_students.clear();  // Очистити поточні дані
+
+    std::string line;
+    bool readingStudents = false;
+    bool readingGrades = false;
+
+    while (std::getline(file, line)) {
+        if (line.empty()) continue;
+
+        if (line == "# Students") {
+            readingStudents = true;
+            readingGrades = false;
+            continue;
+        }
+        else if (line == "# Grades") {
+            readingStudents = false;
+            readingGrades = true;
+            continue;
+        }
+
+        if (readingStudents) {
+            std::vector<std::string> parts = split(line, ',');
+
+            Student s;
+            s.id = std::stoi(parts[0]);
+            s.name = parts[1];
+            s.age = std::stoi(parts[2]);
+            s.faculty = parts[3];
+
+            m_students[s.id] = s;
+        }
+        else if (readingGrades) {
+            std::vector<std::string> parts = split(line, ',');
+
+            int studentId = std::stoi(parts[0]);
+            std::string subject = parts[1];
+
+            std::vector<int> grades;
+            for (size_t i = 2; i < parts.size(); ++i) {
+                grades.push_back(std::stoi(parts[i]));
+            }
+
+            m_students[studentId].grades[subject] = grades;
+        }
+    }
+
+    file.close();
+    std::cout << "Data loaded from " << filename << std::endl;
 }

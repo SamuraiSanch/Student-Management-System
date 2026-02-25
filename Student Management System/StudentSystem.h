@@ -6,7 +6,7 @@
 class StudentSystem {
 private:
     int m_id = 1;
-    std::map<int, Student> m_students;           // ID -> Student
+    std::map<int, Student> m_students; // ID -> Student
 
 public:
     void addStudent(Student& student);
@@ -26,6 +26,9 @@ public:
     std::map<std::string, int> getFacultyStatistics();
     std::map<std::string, int> getPopularSubjects();
     std::vector<Student> getExcellentStudents();
+
+    void saveToFile(const std::string& filename);
+    void loadFromFile(const std::string& filename);
 };
 
 #endif
