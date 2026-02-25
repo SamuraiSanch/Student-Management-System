@@ -208,6 +208,7 @@ void StudentSystem::saveToFile(const std::string& filename) {
     }
 
     file.close();
+    std::cout << "Data loaded to: " << filename << std::endl;
 }
 std::vector<std::string> split(const std::string& str, char delimiter) {
     std::vector<std::string> tokens;
@@ -227,7 +228,7 @@ void StudentSystem::loadFromFile(const std::string& filename) {
         throw std::runtime_error("Cannot open file: " + filename);
     }
 
-    m_students.clear();  // Очистити поточні дані
+    m_students.clear();
 
     std::string line;
     bool readingStudents = false;
@@ -274,5 +275,5 @@ void StudentSystem::loadFromFile(const std::string& filename) {
     }
 
     file.close();
-    std::cout << "Data loaded from " << filename << std::endl;
+    std::cout << "Data loaded from: " << filename << std::endl;
 }
