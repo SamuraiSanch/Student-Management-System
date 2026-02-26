@@ -15,7 +15,7 @@ void StudentSystem::showAllStudents() {
         if (it == m_students.end())
             throw std::runtime_error("ShowAllStudents can't find students.");
         while (it != m_students.end()) {
-            std::cout << "ID: " << it->first << " contains student " << it->second << '\n';
+            std::cout << it->second << '\n';
             ++it;
         }
 }
@@ -56,6 +56,7 @@ void StudentSystem::addGrade(const int id, const std::string& subject, const int
     catch (const std::out_of_range) {
         throw std::runtime_error("AddGrade (int) can't find student.");
     }
+    std::cout << "Grade added sucessfully.";
 }
 void StudentSystem::addGrade(const std::string& name, const std::string& subject, const int grade) {
     auto it = m_students.begin();
@@ -64,6 +65,7 @@ void StudentSystem::addGrade(const std::string& name, const std::string& subject
             it->second.grades[subject].push_back(grade);
         ++it;
     }
+    std::cout << "Grade added sucessfully.";
 }
 void StudentSystem::showGrades(const int id) {
     auto it = m_students.find(id);

@@ -2,6 +2,8 @@
 #include "StudentSystem.h"
 int main()
 {
+
+    /*
     Student s;
     s.age = 19;
     s.faculty = "Math";
@@ -16,5 +18,6 @@ int main()
     sys.showAllStudents();
     sys.removeStudent(s.id);
     sys.showAllStudents();
+    */
 }
 
