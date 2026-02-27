@@ -68,11 +68,6 @@ make
 ./student_system
 ```
 
-## 📸 Demonstration
-
-### Program
-![Program](screenshots/demo.gif)
-
 ## 📂 Project Structure
 ```
 student-management-system/
