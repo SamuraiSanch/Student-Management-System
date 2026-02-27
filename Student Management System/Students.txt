@@ -1,15 +1,6 @@
 # Students
-1,Sanch,21,Computer Engineer
-2,Oleg,23,Psychologic
-3,Olena,25,Informatic
-4,John,24,Comedian
-5,Josh,23,Teacher
+1,Sanch,21,Computer Engineering
 
 # Grades
-1,English,82
-2,English,87
-2,Japan,90
-3,Engineering,71
-4,BMD,95,99
-4,Literature,98
-5,Physics,76
+1,Literature,91
+1,Math,95
