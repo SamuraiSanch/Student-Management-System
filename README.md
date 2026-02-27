@@ -85,9 +85,7 @@ student-management-system/
 ├── README.md             # This file
 ├── Students.txt          # Sample data file (generated)
 └── screenshots/
-    ├── demo.png
-    ├── menu.png
-    └── statistics.png
+    └── demo.gif
 ```
 
 ## 💾 Data Format
@@ -179,4 +177,3 @@ GitHub: [@SamuraiSanch](https://github.com/SamuraiSanch)
 ---
 
 ⭐ If you found this project helpful, please give it a star!
-```
