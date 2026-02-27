@@ -2,7 +2,7 @@
 
 A console-based student management system built with C++ and STL containers for efficient data handling and academic record keeping.
 
-![Demo](screenshots/demo.png)
+![Demo](screenshots/demo.gif)
 
 ## 📋 Description
 
