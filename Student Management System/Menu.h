@@ -8,7 +8,7 @@ private:
 public:
     Menu(StudentSystem& studsystem) : m_studsystem(studsystem) {
     }
-    bool getMenu();
+    void getMenu();
 };
 
 #endif

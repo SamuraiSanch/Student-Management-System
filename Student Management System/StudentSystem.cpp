@@ -56,16 +56,19 @@ void StudentSystem::addGrade(const int id, const std::string& subject, const int
     catch (const std::out_of_range) {
         throw std::runtime_error("AddGrade (int) can't find student.");
     }
-    std::cout << "Grade added sucessfully.";
+    std::cout << "Grade added successfully.";
 }
 void StudentSystem::addGrade(const std::string& name, const std::string& subject, const int grade) {
     auto it = m_students.begin();
     while (it != m_students.end()) {
-        if (it->second.name == name)
+        if (it->second.name == name) {
             it->second.grades[subject].push_back(grade);
+            return;
+        }
         ++it;
+        
     }
-    std::cout << "Grade added sucessfully.";
+    throw std::runtime_error("AddGrade (string) can't find student.");
 }
 void StudentSystem::showGrades(const int id) {
     auto it = m_students.find(id);
@@ -210,7 +213,7 @@ void StudentSystem::saveToFile(const std::string& filename) {
     }
 
     file.close();
-    std::cout << "Data loaded to: " << filename << std::endl;
+    std::cout << "Data saved to: " << filename << std::endl;
 }
 std::vector<std::string> split(const std::string& str, char delimiter) {
     std::vector<std::string> tokens;

@@ -1,23 +1,14 @@
 ﻿#include <iostream>
-#include "StudentSystem.h"
+#include "Menu.h"
 int main()
 {
-
-    /*
-    Student s;
-    s.age = 19;
-    s.faculty = "Math";
-    s.name = "Sanch";
-    Student d;
-    d.age = 18;
-    d.faculty = "Literature";
-    d.name = "Nine";
-    StudentSystem sys;
-    sys.addStudent(s);
-    sys.addStudent(d);
-    sys.showAllStudents();
-    sys.removeStudent(s.id);
-    sys.showAllStudents();
-    */
+    StudentSystem studentSystem;
+    Menu menu(studentSystem);
+    try {
+        menu.getMenu();
+    }
+    catch (std::runtime_error e) {
+        std::cerr << e.what();
+    }
 }
 

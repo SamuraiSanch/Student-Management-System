@@ -17,10 +17,12 @@ struct Student {
 };
 inline std::istream& operator>> (std::istream& in, Student& s) {
     std::cout << "Name: ";
+    std::cin.ignore();
     std::getline(in, s.name);
     std::cout << "Age: ";
     in >> s.age;
     std::cout << "Faculty: ";
+    std::cin.ignore();
     std::getline(in, s.faculty);
     return in;
 }
